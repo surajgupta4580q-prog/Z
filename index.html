@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irha ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#04010b;
+overflow:hidden;
+color:white;
+}
+
+/* LOVE LOADER */
+
+.loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#04010b;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+animation:fadeOut 1s forwards;
+animation-delay:4s;
+}
+
+.loader h1{
+font-size:4rem;
+background:linear-gradient(90deg,#ff5fd2,#fff,#ff9bf0);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:pulse 2s infinite;
+}
+
+.loader p{
+margin-top:20px;
+font-size:1.3rem;
+color:#ffdff7;
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* BACKGROUND */
+
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at top right,#ff00aa55,transparent),
+radial-gradient(circle at bottom left,#7a00ff66,transparent),
+#04010b;
+z-index:-20;
+}
+
+/* PARTICLES */
+
+.particles{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:-19;
+}
+
+.particles span{
+position:absolute;
+display:block;
+animation:float 15s linear infinite;
+opacity:0.7;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh) rotate(0deg);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) rotate(720deg);
+opacity:0;
+}
+}
+
+/* PAGE */
+
+.page{
+width:100%;
+height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+overflow-y:auto;
+position:absolute;
+top:0;
+left:0;
+}
+
+.active{
+display:flex;
+animation:show 1s;
+}
+
+@keyframes show{
+from{
+opacity:0;
+transform:scale(1.05);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
+/* TITLES */
+
+.title{
+font-size:5rem;
+background:linear-gradient(90deg,#ff5fd2,#fff,#ff9bf0);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:30px;
+}
+
+.text{
+font-size:1.6rem;
+line-height:2.2;
+max-width:1000px;
+color:#ffe6fb;
+}
+
+/* BUTTON */
+
+.btn{
+margin-top:35px;
+padding:18px 45px;
+border:none;
+border-radius:60px;
+background:linear-gradient(45deg,#ff009d,#ff66d9);
+color:white;
+font-size:1.1rem;
+font-weight:700;
+cursor:pointer;
+box-shadow:0 0 25px rgba(255,0,157,0.4);
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* TIMER */
+
+.timer{
+font-size:2.8rem;
+margin-top:30px;
+font-weight:700;
+line-height:1.8;
+}
+
+/* GALLERY */
+
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+margin-top:30px;
+}
+
+.card{
+width:280px;
+height:400px;
+border-radius:30px;
+overflow:hidden;
+position:relative;
+animation:updown 5s infinite ease-in-out;
+box-shadow:0 0 30px rgba(255,255,255,0.12);
+}
+
+.card:nth-child(2){
+animation-delay:1s;
+}
+
+.card:nth-child(3){
+animation-delay:2s;
+}
+
+@keyframes updown{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0px);}
+}
+
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay{
+position:absolute;
+bottom:0;
+width:100%;
+padding:18px;
+font-size:1.2rem;
+background:linear-gradient(transparent,#000);
+}
+
+/* CHAT */
+
+.chat{
+margin-top:30px;
+width:100%;
+max-width:750px;
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.msg{
+padding:18px 22px;
+border-radius:22px;
+font-size:1.2rem;
+max-width:80%;
+display:none;
+}
+
+.left{
+align-self:flex-start;
+background:#1f1133;
+}
+
+.right{
+align-self:flex-end;
+background:#ff009d;
+}
+
+/* LETTER */
+
+.letter{
+margin-top:30px;
+padding:35px;
+max-width:900px;
+background:rgba(255,255,255,0.08);
+border-radius:30px;
+backdrop-filter:blur(12px);
+font-size:1.3rem;
+line-height:2.2;
+color:#ffe8fb;
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#140021;
+padding:25px;
+border-radius:25px;
+display:none;
+z-index:999;
+box-shadow:0 0 40px rgba(255,0,157,0.5);
+font-size:1.1rem;
+text-align:center;
+width:90%;
+max-width:420px;
+max-height:80vh;
+overflow-y:auto;
+}
+
+/* FINAL */
+
+.final{
+font-size:5rem;
+font-family:'Dancing Script',cursive;
+background:linear-gradient(90deg,#ff5fd2,#fff,#ff9bf0);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.title{
+font-size:3rem;
+}
+
+.text{
+font-size:1.1rem;
+}
+
+.btn{
+font-size:0.95rem;
+padding:15px 28px;
+}
+
+.timer{
+font-size:2rem;
+}
+
+.card{
+width:90%;
+max-width:300px;
+height:380px;
+}
+
+.msg{
+font-size:1rem;
+}
+
+.letter{
+font-size:1.05rem;
+padding:25px;
+}
+
+.final{
+font-size:3rem;
+}
+
+.loader h1{
+font-size:2.5rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOVE LOADER -->
+
+<div class="loader">
+
+<h1>For Irha ❤️</h1>
+
+<p>
+Loading cutest person on earth 😭✨
+</p>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="bg"></div>
+
+<div class="particles"></div>
+
+<!-- PAGE 1 -->
+
+<section class="page active">
+
+<h1 class="title">Hey Irha ✨</h1>
+
+<p class="text" id="typing"></p>
+
+<button class="btn" onclick="nextPage()">
+Enter Carefully 🎁
+</button>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page">
+
+<h1 class="title">Since We Met ❤️</h1>
+
+<p class="text">
+26 Feb 2026 se 😭✨
+</p>
+
+<div class="timer" id="timer">
+Loading... ❤️
+</div>
+
+<button class="btn" onclick="nextPage()">
+Continue 💖
+</button>
+
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page">
+
+<h1 class="title">The Prettiest Girl Ever 💖</h1>
+
+<div class="gallery">
+
+<div class="card">
+<img src="photo1.jpg">
+<div class="overlay">Ye smile illegal 😭❤️</div>
+</div>
+
+<div class="card">
+<img src="photo2.jpg">
+<div class="overlay">Too pretty 👀✨</div>
+</div>
+
+<div class="card">
+<img src="photo3.jpg">
+<div class="overlay">Princess vibes 👑</div>
+</div>
+
+</div>
+
+<button class="btn" onclick="nextPage()">
+Next ✨
+</button>
+
+</section>
+
+<!-- PAGE 4 -->
+
+<section class="page">
+
+<h1 class="title">Average Conversation 😭</h1>
+
+<div class="chat">
+
+<div class="msg left">Aap cute ho 😭❤️</div>
+<div class="msg right">Shut upppp 😭</div>
+<div class="msg left">Sach bol raha hoon 👀</div>
+<div class="msg right">Aap bhi acche ho 😭✨</div>
+<div class="msg left">Bas acche...? 😭</div>
+
+</div>
+
+<button class="btn" onclick="nextPage()">
+Voice Note 🎤
+</button>
+
+</section>
+
+<!-- PAGE 5 -->
+
+<section class="page">
+
+<h1 class="title">Voice Note 🎧</h1>
+
+<button class="btn" onclick="document.getElementById('voice').play()">
+Play Voice Message 💖
+</button>
+
+<audio id="voice">
+<source src="voice.mp3" type="audio/mp3">
+</audio>
+
+<button class="btn" onclick="nextPage()">
+Continue ✨
+</button>
+
+</section>
+
+<!-- PAGE 6 -->
+
+<section class="page">
+
+<h1 class="title">Secret Letter 💌</h1>
+
+<div class="letter">
+
+Irhaaaa 😭❤️<br><br>
+
+Sach bolu...?  
+Aap itni cute kyun ho yaar 😭✨<br><br>
+
+Matlab jab bhi aapka message aata hai na,
+automatic stupid si smile aa jati hai 😭💖<br><br>
+
+Aur aapki smile...
+dangerous level cute hai 😤❤️<br><br>
+
+Waise toh hum bestfriends hain,
+but honestly aap mere liye thodi zyada special ho 🌸<br><br>
+
+Pata nahi kyun...
+par aapka naam aate hi smile aa jati hai 😭❤️<br><br>
+
+Happy Birthdayyyy Princess 👑🎂✨
+
+</div>
+
+<button class="btn" onclick="showPopup()">
+Open Hidden Secret 👀
+</button>
+
+<button class="btn" onclick="nextPage()">
+Final Page 🌙
+</button>
+
+</section>
+
+<!-- PAGE 7 -->
+
+<section class="page">
+
+<h1 class="final">Thank You For Existing ❤️</h1>
+
+<p class="text">
+Aap genuinely meri life ke cutest parts mein se ek ho ✨😭
+</p>
+
+<button class="btn" onclick="restartPages()">
+Replay Memories ✨
+</button>
+
+</section>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+👀❤️<br><br>
+
+Lowkey...<br>
+I think I like you a little too much 😭✨
+
+<br><br>
+
+<button class="btn" onclick="closePopup()">
+Close
+</button>
+
+</div>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* MUSIC FIX */
+
+document.body.addEventListener("click", function () {
+
+const music = document.getElementById("bgMusic");
+
+music.play();
+
+}, { once: true });
+
+/* PARTICLES */
+
+let particles=document.querySelector(".particles");
+
+for(let i=0;i<120;i++){
+
+let particle=document.createElement("span");
+
+particle.innerHTML=["✨","💖","🌸","⭐"][Math.floor(Math.random()*4)];
+
+particle.style.left=Math.random()*100+"%";
+
+particle.style.fontSize=Math.random()*16+10+"px";
+
+particle.style.animationDuration=Math.random()*10+10+"s";
+
+particle.style.animationDelay=Math.random()*5+"s";
+
+particles.appendChild(particle);
+
+}
+
+/* PAGE SYSTEM */
+
+let currentPage=0;
+
+const pages=document.querySelectorAll(".page");
+
+function nextPage(){
+
+pages[currentPage].classList.remove("active");
+
+currentPage++;
+
+pages[currentPage].classList.add("active");
+
+if(currentPage===3){
+
+showChats();
+
+}
+
+}
+
+function restartPages(){
+
+pages[currentPage].classList.remove("active");
+
+currentPage=0;
+
+pages[currentPage].classList.add("active");
+
+}
+
+/* TYPING */
+
+const text="Ek chota sa surprise hai 😭❤️ But warning ⚠️ Andar bohot zyada cuteness aur hidden pyaar ho sakta hai 👀✨";
+
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,45);
+
+}
+
+}
+
+typing();
+
+/* CHAT */
+
+function showChats(){
+
+let msgs=document.querySelectorAll(".msg");
+
+msgs.forEach((msg,index)=>{
+
+setTimeout(()=>{
+
+msg.style.display="block";
+
+},index*900);
+
+});
+
+}
+
+/* POPUP */
+
+function showPopup(){
+
+document.getElementById("popup").style.display="block";
+
+}
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none";
+
+}
+
+/* TIMER */
+
+const startDate=new Date("2026-02-26T00:00:00");
+
+function updateTimer(){
+
+const now=new Date();
+
+const diff=now-startDate;
+
+const days=Math.floor(diff/(1000*60*60*24));
+
+const hours=Math.floor((diff/(1000*60*60))%24);
+
+const minutes=Math.floor((diff/(1000*60))%60);
+
+document.getElementById("timer").innerHTML=
+days+" Days 💖<br>"+
+hours+" Hours ✨<br>"+
+minutes+" Minutes 😭";
+
+}
+
+setInterval(updateTimer,1000);
+
+updateTimer();
+
+</script>
+
+</body>
+</html>
